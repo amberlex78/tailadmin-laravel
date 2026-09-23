@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap') layer(base);
-@import 'prismjs/themes/prism.min.css';
 @import 'tailwindcss';
 
 
@@ -389,27 +388,6 @@
 .apexcharts-gridline {
   @apply !stroke-gray-100 dark:!stroke-gray-800;
 }
-.stocks-slider-outer .swiper-button-next:after,
-.stocks-slider-outer .swiper-button-prev:after {
-  @apply hidden;
-}
-
-.stocks-slider-outer .swiper-button-next,
-.stocks-slider-outer .swiper-button-prev {
-  @apply static! mt-0 h-8 w-9 rounded-full border border-gray-200 !text-gray-700 transition hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-800 dark:text-gray-400!;
-}
-
-.stocks-slider-outer .swiper-button-next.swiper-button-disabled,
-.stocks-slider-outer .swiper-button-prev.swiper-button-disabled {
-  @apply bg-white opacity-50 dark:bg-gray-900;
-}
-
-.stocks-slider-outer .swiper-button-next svg,
-.stocks-slider-outer .swiper-button-prev svg {
-  @apply !h-auto !w-auto;
-  fill: none;
-}
-
 .flatpickr-wrapper {
   @apply w-full;
 }
@@ -572,63 +550,6 @@ span.flatpickr-weekday,
   @apply flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200 lg:inline-flex lg:w-auto;
 }
 
-/* Code Editor */
-code[class*='language-'],
-pre[class*='language-'] {
-  text-shadow: none;
-  color: #344054;
-  overflow: hidden !important;
-  font-size: 14px;
-  margin: 0;
-  padding: 0;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  text-align: justify;
-}
-
-.dark code[class*='language-'],
-.dark pre[class*='language-'] {
-  text-shadow: none;
-  color: #98a2b3;
-}
-.language-html {
-  background-color: #ffffff !important;
-}
-.dark .language-html {
-  background-color: #ffffff00 !important;
-}
-.token {
-  text-shadow: none;
-  font-size: 14px;
-}
-.token.doctype-tag,
-.token.name {
-  color: #018001;
-}
-.token.tag {
-  color: #267f99;
-}
-.token.selector {
-  color: #267f99;
-}
-.token.property {
-  color: #0070c1;
-}
-.token.language-css {
-  color: #1b00ff;
-}
-.token.attr-name {
-  color: #98a2b3;
-}
-.token.attr-value {
-  color: #a31615;
-}
-.token.punctuation {
-  color: #344054;
-}
-.dark .token.punctuation {
-  color: #98a2b3;
-}
 .custom-datepicker .flatpickr-calendar.static.open {
   left: 0;
   right: auto;
@@ -636,12 +557,6 @@ pre[class*='language-'] {
 [dir="rtl"] .custom-datepicker .flatpickr-calendar.static.open {
   right: 0;
   left: auto;
-}
-
-.swiper-button-prev, .swiper-button-next {
-    svg {
-        fill: none !important;
-    }
 }
 
 @media screen and (max-width: 525px) {
@@ -785,21 +700,4 @@ pre[class*='language-'] {
     border: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
-}
-
-#card-slider-prev.swiper-button-disabled,
-#card-slider-next.swiper-button-disabled {
-  @apply pointer-events-none opacity-50;
-}
-
-/* Force code blocks and syntax highlighting to always remain LTR */
-pre,
-code,
-pre code,
-.line-numbers,
-[class*="language-"],
-.prism-code {
-  direction: ltr !important;
-  text-align: left !important;
-  unicode-bidi: isolate;
 }
