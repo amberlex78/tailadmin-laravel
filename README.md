@@ -14,7 +14,7 @@
 ## Features
 
 - Responsive Laravel dashboard layout with dark mode and RTL support.
-- Reusable Blade components for dashboards, forms, tables, charts, calendars, modals, and profile pages.
+- Reusable Blade components for dashboards, forms, tables, charts, modals, and profile pages.
 - Tailwind CSS v4 with Vite.
 - Alpine.js for lightweight UI interactions.
 - Static demo pages ready to customize for an admin panel, CRM, SaaS application, or internal tool.

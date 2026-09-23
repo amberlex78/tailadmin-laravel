@@ -1,6 +1,6 @@
 # AGENTS.md — TailAdmin Free Laravel
 
-> Free Laravel 12 admin dashboard template · RTL Layout Support · Tailwind CSS v4 · Blade Components · Alpine.js · Vite · ApexCharts · FullCalendar · Swiper · Flatpickr
+> Free Laravel 12 admin dashboard template · RTL Layout Support · Tailwind CSS v4 · Blade Components · Alpine.js · Vite · ApexCharts · Swiper · Flatpickr
 
 ## Repo Map
 
@@ -17,7 +17,7 @@ resources/
 ├── js/
 │   ├── app.js                # Main JS entry point (Alpine.js, component dynamic imports)
 │   ├── bootstrap.js          # Axios & HTTP setup
-│   └── components/           # Client-side modules (calendar-init, charts, map)
+│   └── components/           # Client-side modules (charts)
 └── views/
     ├── components/           # Reusable Blade components (<x-ui.*>, <x-form.*>, <x-common.*>, etc.)
     │   ├── common/           # Shared page elements (page-breadcrumb, component-card, table-dropdown)
@@ -28,7 +28,7 @@ resources/
     │   ├── tables/           # Table variations (basic-tables-one to five)
     │   └── ui/               # UI primitives (alert, avatar, badge, button, modal)
     ├── layouts/              # Master layouts (app.blade.php, fullscreen-layout.blade.php, sidebar.blade.php, app-header.blade.php)
-    └── pages/                # Route view templates (dashboard/, auth/, ui-elements/, form/, tables/, chart/, calender.blade.php)
+    └── pages/                # Route view templates (dashboard/, auth/, ui-elements/, form/, tables/, chart/)
 routes/
 ├── web.php                   # Web application routes
 ├── api.php                   # API routes
@@ -42,7 +42,7 @@ routes/
 - **Tailwind CSS v4** configured with `@tailwindcss/vite` and `@theme` tokens in `resources/css/app.css`.
 - **Alpine.js v3** for reactive UI interactions, toggles, dropdowns, and global store management (`Alpine.store('theme')`).
 - **Vite 7** with `laravel-vite-plugin` for lightning-fast asset compilation.
-- **Third-Party Libraries**: ApexCharts, FullCalendar, Swiper, Flatpickr, jsVectorMap, Leaflet, MapLibre GL, Prism.js.
+- **Third-Party Libraries**: ApexCharts, Swiper, Flatpickr, Prism.js.
 - Scripts:
   - `composer run dev` — runs `php artisan serve`, `npm run dev`, `php artisan pail` concurrently.
   - `npm run dev` / `npm run build` — Vite development and production asset bundling.
@@ -104,7 +104,7 @@ routes/
   - Every styled element must include its corresponding `dark:` variant (e.g. `bg-white dark:bg-gray-800 text-gray-800 dark:text-white/90 border-gray-200 dark:border-gray-800`).
 - **Reusable Utility Classes**:
   - Check `resources/css/app.css` before writing custom styles (`custom-scrollbar`, `no-scrollbar`, `menu-item-*`, `menu-dropdown-*`, `input-placeholder-*`).
-  - Third-party library overrides (ApexCharts, Flatpickr, FullCalendar, Swiper, SimpleBar) are maintained at the bottom of `resources/css/app.css`.
+  - Third-party library overrides (ApexCharts, Flatpickr, Swiper, SimpleBar) are maintained at the bottom of `resources/css/app.css`.
 - **No Hardcoded Hex**: Never hardcode hex colors directly in Blade `class=""` attributes. Use Tailwind theme tokens.
 
 ## Component & Interactive UI Rules
