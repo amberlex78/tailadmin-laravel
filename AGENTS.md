@@ -1,128 +1,209 @@
-# AGENTS.md — TailAdmin Free Laravel
+# Repository Guidelines
 
-> Free Laravel 12 admin dashboard template · RTL Layout Support · Tailwind CSS v4 · Blade Components · Alpine.js · Vite · ApexCharts · Swiper · Flatpickr
+## Project Structure
 
-## Repo Map
+This is a Laravel 13 admin dashboard using Blade, Alpine.js, Tailwind CSS 4, and Vite.
 
-```
-app/
-├── Helpers/                  # MenuHelper and UI utilities
-bootstrap/
-├── app.php                   # Laravel application configuration & middleware setup
-public/
-├── images/                   # Static images, user avatars, icons (flag-us.svg, flag-sa.svg)
-resources/
-├── css/
-│   └── app.css               # Tailwind CSS v4 theme (@theme), global utilities & 3rd party overrides
-├── js/
-│   ├── app.js                # Main JS entry point (Alpine.js, component dynamic imports)
-│   ├── bootstrap.js          # Axios & HTTP setup
-│   └── components/           # Client-side modules (charts)
-└── views/
-    ├── components/           # Reusable Blade components (<x-ui.*>, <x-form.*>, <x-common.*>, etc.)
-    │   ├── common/           # Shared page elements (page-breadcrumb, component-card, table-dropdown)
-    │   ├── ecommerce/        # Ecommerce dashboard widgets (metrics, monthly-sale, recent-orders)
-    │   ├── form/             # Form controls (input, select, date-picker, dropzone)
-    │   ├── header/           # Header widgets (user-dropdown, notification-dropdown)
-    │   ├── profile/          # User profile cards (personal-info, profile-card, address-card)
-    │   ├── tables/           # Table variations (basic-tables-one to five)
-    │   └── ui/               # UI primitives (alert, avatar, badge, button, modal)
-    ├── layouts/              # Master layouts (app.blade.php, fullscreen-layout.blade.php, sidebar.blade.php, app-header.blade.php)
-    └── pages/                # Route view templates (dashboard/, auth/, ui-elements/, form/, tables/, chart/)
-routes/
-├── web.php                   # Web application routes
-├── api.php                   # API routes
-└── console.php               # Console commands
+- `app/` contains PHP application code and Blade component classes.
+- `resources/views/` contains layouts, pages, and reusable Blade components.
+- `resources/css/` and `resources/js/` contain Tailwind styles and frontend modules.
+- `routes/` contains web and console routes; `database/` contains migrations, factories, and seeders.
+- `public/` contains static images and compiled assets.
+- `tests/Feature` and `tests/Unit` contain Pest tests.
+
+Add dashboard pages under `resources/views/pages/<category>/`, reusable UI under `resources/views/components/`, and their routes in `routes/web.php`.
+
+## Build, Test, and Development Commands
+
+```bash
+composer install                 # Install PHP dependencies
+npm install                       # Install Node dependencies
+composer run dev                  # Start Laravel, Vite, queue, and log workers
+npm run build                     # Build production frontend assets
+php artisan test --compact        # Run the test suite
+composer run test                 # Clear config and run tests
 ```
 
-## Stack
+Build frontend assets before tests that render views requiring the Vite manifest.
 
-- **Laravel 12** with **PHP >= 8.2**.
-- **Blade Template Engine** using modular, component-driven architecture (`<x-component-name />`).
-- **Tailwind CSS v4** configured with `@tailwindcss/vite` and `@theme` tokens in `resources/css/app.css`.
-- **Alpine.js v3** for reactive UI interactions, toggles, dropdowns, and global store management (`Alpine.store('theme')`).
-- **Vite 7** with `laravel-vite-plugin` for lightning-fast asset compilation.
-- **Third-Party Libraries**: ApexCharts, Swiper, Flatpickr, Prism.js.
-- Scripts:
-  - `composer run dev` — runs `php artisan serve`, `npm run dev`, `php artisan pail` concurrently.
-  - `npm run dev` / `npm run build` — Vite development and production asset bundling.
-  - `composer test` — runs test suite via Pest PHP.
+## Coding Style and Naming
+
+Use PHP 8.3+ with PSR-12-compatible formatting and typed methods. Run `vendor/bin/pint --dirty` after PHP changes. Use descriptive PascalCase class names, camelCase PHP variables and methods, and kebab-case Blade filenames. Follow the existing component organization and declare Blade component inputs with `@props` where appropriate.
+
+Use Tailwind theme tokens and existing utilities in `resources/css/app.css`; do not add a `tailwind.config.js`. Preserve dark-mode variants and RTL support by preferring logical utilities such as `ms-*`, `me-*`, `start-*`, and `end-*`.
+
+## Testing Guidelines
+
+Write Pest tests in `tests/Feature` for HTTP, routing, and rendered UI behavior, and in `tests/Unit` for isolated logic. Name files with the `Test.php` suffix and run the narrowest relevant test file before the full suite.
+
+## Commits and Pull Requests
+
+Use concise Conventional Commit-style subjects, for example `fix(charts): ...`, `refactor(profile): ...`, or `docs: ...`. Keep commits focused. Pull requests should explain the user-visible change, list verification commands, link related issues when applicable, and include screenshots or recordings for UI changes.
+
+## Configuration and Security
+
+Keep secrets in `.env`, never commit credentials, and update `.env.example` when configuration keys change. Do not add Composer or npm dependencies without discussing the need first.
+
+===
+
+<laravel-boost-guidelines>
+=== foundation rules ===
+
+# Laravel Boost Guidelines
+
+The Laravel Boost guidelines are specifically curated by Laravel maintainers for this application. These guidelines should be followed closely to ensure the best experience when building Laravel applications.
+
+## Foundational Context
+
+This application is a Laravel application running on PHP 8.5. You are an expert with the Laravel ecosystem. Always use the APIs that match the installed major version of each package — do not assume a version.
+
+Before relying on a package's API, confirm its installed version:
+- PHP packages: run `composer show --direct` to list direct dependencies with versions, or `composer show <vendor/package>` for a single package.
+- JS packages: check `package.json` for the installed versions.
+
+## Skills Activation
+
+This project has domain-specific skills available in `**/skills/**`. You MUST activate the relevant skill whenever you work in that domain—don't wait until you're stuck.
 
 ## Conventions
 
-- **New Page**:
-  - Add route in `routes/web.php`.
-  - Create Blade view in `resources/views/pages/<category>/<page-name>.blade.php`.
-  - Extend the appropriate layout: `@extends('layouts.app')` for dashboard pages or `@extends('layouts.fullscreen-layout')` for auth/error/utility pages.
-- **New Reusable Component**:
-  - Domain-specific component: `resources/views/components/<feature>/<component-name>.blade.php`.
-  - Generic UI primitive: `resources/views/components/ui/<component-name>.blade.php`.
-  - Form component: `resources/views/components/form/<component-name>.blade.php`.
-  - Shared wrapper: `resources/views/components/common/<component-name>.blade.php`.
-  - Always use `@props([...])` to declare default values and expected component properties.
-- **Icons**:
-  - Drop reusable SVGs in `resources/views/components/svg/<icon-name>.blade.php` and invoke via `<x-svg.icon-name />`.
-  - For inline SVG icons in components, always use `fill-current` / `stroke-current` and size with `w-*` / `h-*` tokens.
-- **Layout Structure**:
-  - Dashboard pages: Wrapped in `@extends('layouts.app')` with `<x-common.page-breadcrumb>` at the top and content sections inside `<x-common.component-card>`.
-  - Full-width / Auth pages: Wrapped in `@extends('layouts.fullscreen-layout')`.
-- **State Management**:
-  - Component-level state: Use `x-data="{ ... }"` in Alpine.js.
-  - Global theme state: Managed via `Alpine.store('theme')` (handles `light`, `dark`, and system preference synced to `localStorage`).
+- You must follow all existing code conventions used in this application. When creating or editing a file, check sibling files for the correct structure, approach, and naming.
+- Use descriptive names for variables and methods. For example, `isRegisteredForDiscounts`, not `discount()`.
+- Check for existing components to reuse before writing a new one.
 
-## RTL Layout Architecture (Free Version Rules)
+## Verification Scripts
 
-- **No Multi-Language Dictionaries**:
-  - The Free version does not include translation dictionaries or localized routing.
-  - UI copy remains in English.
-  - RTL mode is a layout-direction feature toggled between English (LTR) and Arabic (RTL).
-- **RTL State & Toggle**:
-  - Toggled via the user dropdown Language menu (`user-dropdown.blade.php`).
-  - Persisted in `localStorage.setItem("dir", "rtl" | "ltr")`.
-  - Dynamically updates `document.documentElement.setAttribute("dir", ...)`.
-  - Automatically closes the user dropdown upon language/direction selection.
-  - Immediate execution script in `<head>` of `app.blade.php` and `fullscreen-layout.blade.php` prevents flash of unstyled LTR content.
-- **CSS Logical Properties & RTL Spacing**:
-  - **Margins & Paddings**: Use `ms-*` / `me-*`, `ps-*` / `pe-*` or explicit `ltr:ml-* rtl:mr-*` variants.
-  - **Positioning**: Use `start-*` / `end-*` or `ltr:left-* rtl:right-*`.
-  - **Borders**: Use `ltr:border-r rtl:border-l` or `border-s-*` / `border-e-*`.
-  - **Border Radius**: Use `rounded-s-*` / `rounded-e-*`.
-  - **Text Alignment**: Use `text-start` / `text-end` instead of `text-left` / `text-right`.
-  - **Directional Glyphs**: Chevrons, back arrows, breadcrumb separators, and pagination arrows must flip in RTL using `rtl:rotate-180` or `rtl:-scale-x-100`.
-  - **Off-Canvas Drawers**: Always scope mobile off-canvas drawer translation with `max-xl:-translate-x-full max-xl:rtl:translate-x-full` to prevent attribute specificity collision with `xl:translate-x-0` on desktop.
+- Do not create verification scripts or tinker when tests cover that functionality and prove they work. Unit and feature tests are more important.
 
-## Styling Rules
+## Application Structure & Architecture
 
-- Tailwind CSS **v4** — configured via `resources/css/app.css` using `@theme`. There is **no** `tailwind.config.js`.
-- **Theme Tokens**: Always use predefined theme tokens:
-  - Colors: `brand` (`50`–`950`), `gray` (`25`–`950`), `success`, `error`, `warning`, `blue-light`, `orange`, `theme-pink-500`, `theme-purple-500`.
-  - Typography: `font-outfit`, `text-theme-xs/sm/xl`, `text-title-sm/md/lg/xl/2xl`.
-  - Shadows: `shadow-theme-xs/sm/md/lg/xl`, `shadow-focus-ring`, `shadow-datepicker`, `shadow-tooltip`.
-  - Z-Index: `z-1`, `z-9`, `z-99`, `z-999`, … `z-999999`.
-- **Dark Mode**:
-  - Dark mode is class-driven (`.dark` on `<html>`).
-  - Every styled element must include its corresponding `dark:` variant (e.g. `bg-white dark:bg-gray-800 text-gray-800 dark:text-white/90 border-gray-200 dark:border-gray-800`).
-- **Reusable Utility Classes**:
-  - Check `resources/css/app.css` before writing custom styles (`custom-scrollbar`, `no-scrollbar`, `menu-item-*`, `menu-dropdown-*`, `input-placeholder-*`).
-  - Third-party library overrides (ApexCharts, Flatpickr, Swiper, SimpleBar) are maintained at the bottom of `resources/css/app.css`.
-- **No Hardcoded Hex**: Never hardcode hex colors directly in Blade `class=""` attributes. Use Tailwind theme tokens.
+- Stick to existing directory structure; don't create new base folders without approval.
+- Do not change the application's dependencies without approval.
 
-## Component & Interactive UI Rules
+## Frontend Bundling
 
-- **Single Responsibility**: Keep sub-components modular and focused (e.g. `MonthlySalesChart.blade.php`, `RecentOrders.blade.php`).
-- **Alpine.js Event Handling**:
-  - Do NOT attach redundant `@click` handlers to decorative spans inside `<label :for="...">` elements when `<input x-model="...">` is present, as this causes double-toggle event conflicts.
-  - Use `x-cloak` alongside `[x-cloak] { display: none !important; }` to prevent flash of unstyled content during Alpine initialization.
-- **Modals & Drawers**:
-  - Implement using Alpine `x-data="{ isOpen: false }"` with `@keydown.escape.window="isOpen = false"`, overlay backdrop, and focus management.
-- **Charts & Dataviz**:
-  - Initialize ApexCharts instances in client-side scripts inside `resources/js/components/` or Alpine `x-init` hooks.
-  - Synchronize chart theme colors dynamically on the `'theme-changed'` custom window event.
+- If the user doesn't see a frontend change reflected in the UI, it could mean they need to run `npm run build`, `npm run dev`, or `composer run dev`. Ask them.
 
-## Don'ts
+## Documentation Files
 
-- Don't install new Composer packages or NPM dependencies without asking the user.
-- Don't hardcode physical directional utilities (`ml-*`, `mr-*`, `pl-*`, `pr-*`, `left-*`, `right-*`, `border-l-*`, `border-r-*`, `rounded-l-*`, `rounded-r-*`, `text-left`, `text-right`) without providing proper RTL support (`ltr:` / `rtl:` or CSS logical equivalents).
-- Don't create a `tailwind.config.js` file — Tailwind v4 configuration belongs in `resources/css/app.css`.
-- Don't hardcode user-facing strings in Blade files without adding corresponding keys to `lang/<locale>.json`.
-- Don't write inline CSS styles (`style="..."`) when Tailwind theme tokens and utility classes are available.
+- You must only create documentation files if explicitly requested by the user.
+
+## Replies
+
+- Be concise in your explanations - focus on what's important rather than explaining obvious details.
+
+=== boost rules ===
+
+# Laravel Boost
+
+## Tools
+
+- Laravel Boost is an MCP server with tools designed specifically for this application. Prefer Boost tools over manual alternatives like shell commands or file reads.
+- Use `database-query` to run read-only queries against the database instead of writing raw SQL in tinker.
+- Use `database-schema` to inspect table structure before writing migrations or models.
+- Use `get-absolute-url` to resolve the correct scheme, domain, and port for project URLs. Always use this before sharing a URL with the user.
+- Use `browser-logs` to read browser logs, errors, and exceptions. Only recent logs are useful, ignore old entries.
+
+## Searching Documentation (IMPORTANT)
+
+- Use `search-docs` before changes that depend on Laravel ecosystem APIs, behavior, configuration, or version-specific syntax. Skip it for copy-only edits and other changes where package documentation is irrelevant. Reuse sufficient results already in context instead of searching again.
+- Pass a `packages` array to scope results when you know which packages are relevant.
+- Use multiple broad, topic-based queries: `['rate limiting', 'routing rate limiting', 'routing']`. Expect the most relevant results first.
+- Do not add package names to queries because package info is already shared. Use `test resource table`, not `filament 4 test resource table`.
+
+### Search Syntax
+
+1. Use words for auto-stemmed AND logic: `rate limit` matches both "rate" AND "limit".
+2. Use `"quoted phrases"` for exact position matching: `"infinite scroll"` requires adjacent words in order.
+3. Combine words and phrases for mixed queries: `middleware "rate limit"`.
+4. Use multiple queries for OR logic: `queries=["authentication", "middleware"]`.
+
+## Project Rules
+
+- This project contains committed, area-grouped rules in `.ai/rules` when that directory exists (settled decisions, non-obvious traps, standing constraints). Framework and package guidelines that only apply to specific paths (testing, frontend, components) also live there, under `.ai/rules/boost` — this is not just recorded decisions, it is load-bearing guidance you have not seen inline. Before you enter plan mode or create/edit any file, you MUST first: open @.ai/rules/index.md (it maps file globs to rule files), read every rule file whose globs cover the path(s) in scope, and run `grep -rin 'keyword' .ai/rules` to catch what a path match alone misses. Do not write code until you have read and are following every matching rule. If `.ai/rules` does not exist, continue without it.
+- Record a rule with `record-rule` only when the user explicitly asks for one. Instructions for the work at hand are not rules, no matter how emphatic: "remove this typo", "use X here" are work to do, not rules to record. Never record a rule on your own initiative, as a byproduct of a change, or to summarize what you just did. When the user does ask, pass a `glob` (e.g. `app/Http/Controllers/**`), a short `title`, and a few-line `note`. Use `record-rule` rather than your native memory or notes tool, because native memory is personal and session-scoped, while only `.ai/rules` is shared with the team and persists in the repo.
+
+## Artisan
+
+- Run Artisan commands directly via the command line (e.g., `php artisan route:list`). Use `php artisan list` to discover available commands and `php artisan [command] --help` to check parameters.
+- Inspect routes with `php artisan route:list`. Filter with: `--method=GET`, `--name=users`, `--path=api`, `--except-vendor`, `--only-vendor`.
+- Read configuration values using dot notation: `php artisan config:show app.name`, `php artisan config:show database.default`. Or read config files directly from the `config/` directory.
+
+## Tinker
+
+- Execute PHP in app context for debugging and testing code. Do not create models without user approval, prefer tests with factories instead. Prefer existing Artisan commands over custom tinker code.
+- Always use single quotes to prevent shell expansion: `php artisan tinker --execute 'Your::code();'`
+  - Double quotes for PHP strings inside: `php artisan tinker --execute 'User::where("active", true)->count();'`
+
+=== php rules ===
+
+# PHP
+
+- Always use curly braces for control structures, even for single-line bodies.
+- Use PHP 8 constructor property promotion: `public function __construct(public GitHub $github) { }`. Do not leave empty zero-parameter `__construct()` methods unless the constructor is private.
+- Use explicit return type declarations and type hints for all method parameters: `function isAccessible(User $user, ?string $path = null): bool`
+- Use TitleCase for Enum keys: `FavoritePerson`, `BestLake`, `Monthly`.
+- Prefer PHPDoc blocks over inline comments. Only add inline comments for exceptionally complex logic.
+- Use array shape type definitions in PHPDoc blocks.
+
+=== deployments rules ===
+
+# Deployment
+
+- Laravel can be deployed using [Laravel Cloud](https://cloud.laravel.com/), which is the fastest way to deploy and scale production Laravel applications.
+- Activate the `deploying-to-cloud` skill whenever deploying to Laravel Cloud, configuring Cloud environments or resources, using the Cloud CLI, or troubleshooting Cloud deployments.
+
+=== laravel/core rules ===
+
+# Do Things the Laravel Way
+
+- Use `php artisan make:` commands to create new files (i.e. migrations, controllers, models, etc.). You can list available Artisan commands using `php artisan list` and check their parameters with `php artisan [command] --help`.
+- If you're creating a generic PHP class, use `php artisan make:class`.
+- Pass `--no-interaction` to all Artisan commands to ensure they work without user input. You should also pass the correct `--options` to ensure correct behavior.
+
+### Model Creation
+
+- When creating new models, create useful factories and seeders for them too. Ask the user if they need any other things, using `php artisan make:model --help` to check the available options.
+
+## APIs & Eloquent Resources
+
+- For APIs, default to using Eloquent API Resources and API versioning unless existing API routes do not, then you should follow existing application convention.
+
+## URL Generation
+
+- When generating links to other pages, prefer named routes and the `route()` function.
+
+## Testing
+
+- When creating models for tests, use the factories for the models. Check if the factory has custom states that can be used before manually setting up the model.
+- Faker: Use methods such as `$this->faker->word()` or `fake()->randomDigit()`. Follow existing conventions whether to use `$this->faker` or `fake()`.
+- When creating tests, make use of `php artisan make:test [options] {name}` to create a feature test, and pass `--unit` to create a unit test. Most tests should be feature tests.
+
+## Vite Error
+
+- If you receive an "Illuminate\Foundation\ViteException: Unable to locate file in Vite manifest" error, you can run `npm run build` or ask the user to run `npm run dev` or `composer run dev`.
+
+=== pint/core rules ===
+
+# Laravel Pint Code Formatter
+
+- If you have modified any PHP files, you must run `vendor/bin/pint --dirty --format agent` before finalizing changes to ensure your code matches the project's expected style.
+- Do not run `vendor/bin/pint --test --format agent`, siФmply run `vendor/bin/pint --format agent` to fix any formatting issues.
+
+=== pest/core rules ===
+
+# Pest
+
+- This project uses Pest. Create tests with `php artisan make:test --pest {name}`.
+- Do not include the test suite directory in `{name}`. Use `SomeFeatureTest`, not `Feature/SomeFeatureTest`.
+- Read the `testing-best-practices` skill for guidance on coverage, naming, structure, dependency isolation, and review.
+- Do not delete tests or test files without approval. They are part of the application.
+
+## Running Tests
+
+- Run the narrowest set of tests that covers the change. Pass a file path or `--filter=testName` to `php artisan test --compact`.
+- Rerun a test after each change to it.
+- Run `vendor/bin/pest` to call the test runner directly. It accepts the same file path and `--filter=testName` arguments.
+- After the feature tests pass, ask the user to run the complete suite with `php artisan test --compact`.
+
+</laravel-boost-guidelines>
