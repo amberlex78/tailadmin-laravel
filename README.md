@@ -2,32 +2,6 @@
 
 **TailAdmin Laravel** is a modern admin dashboard template powered by **Laravel 12**, **Tailwind CSS v4**, **Alpine.js**, and Blade components.
 
-![TailAdmin - Next.js Dashboard Preview](./tailadmin-laravel.png)
-
-## Quick Links
-
-* [✨ Get TailAdmin Laravel](https://tailadmin.com/laravel)
-* [📄 Documentation](https://tailadmin.com/docs)
-* [⬇️ Download](https://tailadmin.com/download)
-* [🌐 Live Demo](https://laravel-demo.tailadmin.com)
-
-## Features
-
-- Responsive Laravel dashboard layout with dark mode and RTL support.
-- Reusable Blade components for dashboards, forms, tables, charts, modals, and profile pages.
-- Tailwind CSS v4 with Vite.
-- Alpine.js for lightweight UI interactions.
-- Static demo pages ready to customize for an admin panel, CRM, SaaS application, or internal tool.
-
-## Requirements
-
-- PHP 8.3 or newer
-- Composer
-- Node.js 24.x and npm
-- PHP extensions required by Laravel, including `pdo_sqlite`
-
-This repository is configured for local development without Docker, Laravel Sail, MySQL, Redis, or a mail server. SQLite is used as the local database, while sessions and cache use the filesystem and queues run synchronously.
-
 ## Local Installation
 
 ### 1. Clone the repository
