@@ -22,7 +22,7 @@
         "@floating-ui/dom": "^1.7.4",
         "@popperjs/core": "^2.11.8",
         "alpinejs": "^3.14.9",
-        "apexcharts": "^7.0.0",
+        "apexcharts": "5.16.0",
         "flatpickr": "^4.6.13",
         "prismjs": "^1.30.0",
         "swiper": "^14.2.0",
