@@ -1,0 +1,33 @@
+<x-common.settings-card title="Security">
+        <x-common.setting-row
+            title="Change Password"
+            description="Receive real-time notifications and team alerts."
+        >
+            <x-slot:actions>
+                <button
+                    class="shadow-theme-xs flex h-10 items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white py-2.5 pr-4 pl-3.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/3 dark:hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M12.3861 5.08087L14.9182 7.61296M15.6437 3.5917L16.408 4.35603C16.8962 4.84419 16.8962 5.63564 16.408 6.1238L7.83547 14.6963C7.69039 14.8414 7.51182 14.9486 7.31554 15.0083L3.97461 16.0251L4.99141 12.6842C5.05115 12.4879 5.15829 12.3093 5.30337 12.1642L13.8759 3.5917C14.3641 3.10355 15.1555 3.10355 15.6437 3.5917Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Change Password
+                </button>
+            </x-slot:actions>
+        </x-common.setting-row>
+
+        <x-common.setting-row
+            title="Two-factor authentication (2FA)"
+            description="Keep your account secure by enabling 2FA"
+        >
+            <x-slot:actions>
+                <div x-data="{ switcherToggle: false }">
+                    <label for="toggle1" class="flex cursor-pointer items-center gap-3 text-sm font-medium text-gray-700 select-none dark:text-gray-400">
+                        <div class="relative">
+                            <input type="checkbox" id="toggle1" class="sr-only" @change="switcherToggle = !switcherToggle" />
+                            <div class="block h-5 w-9 rounded-full" :class="switcherToggle ? 'bg-brand-500 dark:bg-brand-500' : 'bg-gray-200 dark:bg-white/10'"></div>
+                            <div :class="switcherToggle ? 'ltr:translate-x-full rtl:-translate-x-full' : 'translate-x-0'" class="shadow-theme-sm absolute top-0.5 ltr:left-0.5 rtl:right-0.5 h-4 w-4 rounded-full bg-white duration-200 ease-linear"></div>
+                        </div>
+                    </label>
+                </div>
+            </x-slot:actions>
+        </x-common.setting-row>
+</x-common.settings-card>
