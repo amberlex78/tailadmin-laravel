@@ -1,8 +1,8 @@
 # TailAdmin Laravel - Tailwind CSS Free Laravel Dashboard
 
-**TailAdmin Laravel** is a modern, production-ready admin dashboard template powered by **Laravel 12**, **Tailwind CSS v4**, **Alpine.js**, and a clean, modular architecture. TailAdmin is one of the most popular Tailwind CSS dashboard now also available for Larvael. It’s designed for building fast, scalable admin panels, CRM dashboards, SaaS backends, and any data-driven application where clarity and performance matter.
-![TailAdmin - Next.js Dashboard Preview](./tailadmin-laravel.png)
+**TailAdmin Laravel** is a modern admin dashboard template powered by **Laravel 12**, **Tailwind CSS v4**, **Alpine.js**, and Blade components.
 
+![TailAdmin - Next.js Dashboard Preview](./tailadmin-laravel.png)
 
 ## Quick Links
 
@@ -11,125 +11,56 @@
 * [⬇️ Download](https://tailadmin.com/download)
 * [🌐 Live Demo](https://laravel-demo.tailadmin.com)
 
-Here’s a tighter, more search-friendly version that highlights value and avoids fluff while keeping your structure intact.
+## Features
 
-## ✨ Key Features
+- Responsive Laravel dashboard layout with dark mode and RTL support.
+- Reusable Blade components for dashboards, forms, tables, charts, calendars, modals, and profile pages.
+- Tailwind CSS v4 with Vite.
+- Alpine.js for lightweight UI interactions.
+- Static demo pages ready to customize for an admin panel, CRM, SaaS application, or internal tool.
 
-* 🚀 **Laravel 12 Core** - Built on the latest Laravel release with improved routing, security, and Blade templating
-* 🎨 **Tailwind CSS v4** - Utility-first styling for rapid, consistent UI development
-* ⚡ **Alpine.js Interactivity** - Lightweight reactivity without a heavy JavaScript framework
-* 📦 **Vite Build System** - Fast dev server, instant HMR, and optimized production builds
-* 📱 **Fully Responsive Layouts** - Smooth, mobile-first design that adapts across all screen sizes
-* 🌙 **Built-in Dark Mode** - Ready-to-use modern dark theme for better usability and aesthetics
-* 📊 **Advanced UI Components** - Charts, data tables, forms, calendars, modals, and reusable blocks for complex dashboards
-* 🎯 **Production-Ready Dashboard UI** - Clean, modern interface crafted for real apps, not placeholder demos
+## Requirements
 
-### Other Versions
+- PHP 8.3 or newer
+- Composer
+- Node.js 22.x and npm
+- PHP extensions required by Laravel, including `pdo_sqlite`
 
-- [Next.js Version](https://github.com/TailAdmin/free-nextjs-admin-dashboard)
-- [React.js Version](https://github.com/TailAdmin/free-react-tailwind-admin-dashboard)
-- [Vue.js Version](https://github.com/TailAdmin/vue-tailwind-admin-dashboard)
-- [Angular Version](https://github.com/TailAdmin/free-angular-tailwind-dashboard)
-- [Laravel Version](https://github.com/TailAdmin/tailadmin-laravel)
+This repository is configured for local development without Docker, Laravel Sail, MySQL, Redis, or a mail server. SQLite is used as the local database, while sessions and cache use the filesystem and queues run synchronously.
 
-## 📋 Requirements
-To set up TailAdmin Laravel, make sure your environment includes:
+## Local Installation
 
-* **PHP 8.3+**
-* **Composer** (PHP dependency manager)
-* **Node.js 18+** and **npm** (for compiling frontend assets)
-* **Database** - SQLite is configured by default; MySQL/PostgreSQL are optional for future application data
-
-### Tailwind CSS Laravel Dashboard
-
-TailAdmin delivers a refined Tailwind CSS Laravel Dashboard experience, combining Laravel’s robust backend with Tailwind’s flexible utility classes. The result is a clean, fast, and customizable dashboard that helps developers build modern admin interfaces without the usual front-end complexity. It’s ideal for teams looking for a Tailwind-powered Laravel starter that stays lightweight and easy to scale.
-
-### Laravel Admin Dashboard
-
-If you’re searching for a dependable Laravel Admin Dashboard template that’s easy to set up and ready for production, TailAdmin fits the job. It offers a polished UI, reusable components, optimized performance, and all the essentials needed to launch dashboards, CRM systems, and internal tools quickly. It gives developers a solid foundation, so projects move faster with fewer decisions to worry about.
-
-### Check Your Environment
-
-Verify your installations:
-
-```bash
-php -v
-composer -V
-node -v
-npm -v
-```
-
-## 🚀 Quick Start Installation (Local / Native)
-
-### Step 1: Clone the Repository
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/TailAdmin/tailadmin-laravel.git
 cd tailadmin-laravel
 ```
 
-### Step 2: Install PHP Dependencies
+### 2. Install dependencies
 
 ```bash
 composer install
-```
-
-This command will install all Laravel dependencies defined in `composer.json`.
-
-### Step 3: Install Node.js Dependencies
-
-```bash
 npm install
 ```
 
-Or if you prefer yarn or pnpm:
+Use Node.js 22.x for the version declared by the project:
 
 ```bash
-# Using yarn
-yarn install
-
-# Using pnpm
-pnpm install
+node -v
+npm -v
 ```
 
-### Step 4: Environment Configuration
-
-Copy the example environment file:
+### 3. Configure the environment
 
 ```bash
 cp .env.example .env
-```
-
-**For Windows users:**
-
-```bash
-copy .env.example .env
-```
-
-**Or create it programmatically:**
-
-```bash
-php -r "file_exists('.env') || copy('.env.example', '.env');"
-```
-
-### Step 5: Generate Application Key
-
-```bash
 php artisan key:generate
 ```
 
-This creates a unique encryption key for your application.
+On Windows, use `copy .env.example .env` instead of `cp`.
 
-### Step 6: Prepare the local SQLite database
-
-The dashboard is a UI template and does not need MySQL, PostgreSQL, Redis, or a mail server. The default `.env.example` uses SQLite and local file/synchronous drivers.
-
-```bash
-touch database/database.sqlite
-php artisan migrate
-```
-
-If you copied an older `.env`, set these values manually:
+The default `.env.example` already contains the local SQLite and filesystem settings:
 
 ```env
 DB_CONNECTION=sqlite
@@ -139,298 +70,159 @@ CACHE_STORE=file
 QUEUE_CONNECTION=sync
 ```
 
-### Step 7: (Optional) Seed the Database
+### 4. Create the SQLite database and run migrations
 
-If you want sample data:
+```bash
+touch database/database.sqlite
+php artisan migrate
+```
+
+On Windows, create an empty file at `database/database.sqlite` manually if `touch` is unavailable.
+
+The template does not require sample database records, but the optional seeder can be run with:
 
 ```bash
 php artisan db:seed
 ```
 
-### Step 8: Storage Link
+### 5. Start the application
 
-Create a symbolic link for file storage:
+Use two terminals:
 
-```bash
-php artisan storage:link
-```
+Terminal 1 — Laravel:
 
-## 🏃 Running the Application
-
-### Development Mode (Recommended)
-
-The easiest way to start development is using the built-in script:
-
-```bash
-composer run dev
-```
-
-This single command starts:
-- ✅ Laravel development server (http://localhost:8000)
-- ✅ Vite dev server for hot module reloading
-- ✅ Queue worker for background jobs
-- ✅ Log monitoring
-
-**Access your application at:** [http://localhost:8000](http://localhost:8000)
-
-### Manual Development Setup
-
-If you prefer to run services individually in separate terminal windows:
-
-**Terminal 1 - Laravel Server:**
 ```bash
 php artisan serve
 ```
 
-**Terminal 2 - Frontend Assets:**
+Terminal 2 — Vite:
+
 ```bash
 npm run dev
 ```
 
-### Building for Production
+Open the dashboard at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
-#### Build Frontend Assets
+You can also build frontend assets for a production-like run:
 
 ```bash
 npm run build
+php artisan serve
 ```
 
-#### Optimize Laravel
+## Useful Commands
 
 ```bash
-# Clear and cache configuration
-php artisan config:cache
+# Clear Laravel caches
+php artisan optimize:clear
 
-# Cache routes
-php artisan route:cache
+# List application routes
+php artisan route:list
 
-# Cache views
-php artisan view:cache
+# Run tests
+php artisan test
 
-# Optimize autoloader
-composer install --optimize-autoloader --no-dev
+# Run frontend development server
+npm run dev
+
+# Build frontend assets
+npm run build
+
+# Create the storage symlink
+php artisan storage:link
 ```
 
-#### Production Environment
+## Testing
 
-Update your `.env` for production:
-
-```env
-APP_ENV=production
-APP_DEBUG=false
-APP_URL=https://yourdomain.com
-```
-
-
-## 🧪 Testing
-
-Run the test suite using Pest:
+Run the PHP test suite with:
 
 ```bash
 composer run test
 ```
 
-Or manually:
+or:
 
 ```bash
 php artisan test
 ```
 
-Run with coverage:
+Before running feature tests that render Blade layouts, build the frontend assets first so that `public/build/manifest.json` exists:
 
 ```bash
-php artisan test --coverage
-```
-
-Run specific tests:
-
-```bash
-php artisan test --filter=ExampleTest
-```
-
-## 📜 Available Commands
-
-### Composer Scripts
-
-```bash
-# Start development environment
-composer run dev
-
-# Run tests
-composer run test
-
-# Code formatting (if configured)
-composer run format
-
-# Static analysis (if configured)
-composer run analyze
-```
-
-### NPM Scripts
-
-```bash
-# Start Vite dev server
-npm run dev
-
-# Build for production
 npm run build
-
-# Preview production build
-npm run preview
-
-# Lint JavaScript/TypeScript
-npm run lint
-
-# Format code
-npm run format
+php artisan test
 ```
 
-### Artisan Commands
+## Project Structure
 
-```bash
-# Start development server
-php artisan serve
-
-# Run migrations
-php artisan migrate
-
-# Rollback migrations
-php artisan migrate:rollback
-
-# Fresh migrations with seeding
-php artisan migrate:fresh --seed
-
-# Generate application key
-php artisan key:generate
-
-# Clear all caches
-php artisan optimize:clear
-
-# Cache everything for production
-php artisan optimize
-
-# Create symbolic link for storage
-php artisan storage:link
-
-# Start queue worker
-php artisan queue:work
-
-# List all routes
-php artisan route:list
-
-# Create a new controller
-php artisan make:controller YourController
-
-# Create a new model
-php artisan make:model YourModel -m
-
-# Create a new migration
-php artisan make:migration create_your_table
-```
-
-## 📁 Project Structure
-
-```
+```text
 tailadmin-laravel/
-├── app/                    # Application logic
-│   ├── Http/              # Controllers, Middleware, Requests
-│   ├── Models/            # Eloquent models
-│   └── Providers/         # Service providers
-├── bootstrap/             # Framework bootstrap files
-├── config/                # Configuration files
-├── database/              # Migrations, seeders, factories
-│   ├── migrations/
-│   ├── seeders/
-│   └── factories/
-├── public/                # Public assets (entry point)
-│   ├── build/            # Compiled assets (generated)
-│   └── index.php         # Application entry point
-├── resources/             # Views and raw assets
-│   ├── css/              # Stylesheets (Tailwind)
-│   ├── js/               # JavaScript files (Alpine.js)
-│   └── views/            # Blade templates
-├── routes/                # Route definitions
-│   ├── web.php           # Web routes
-│   ├── api.php           # API routes
-│   └── console.php       # Console routes
-├── storage/               # Logs, cache, uploads
-│   ├── app/
-│   ├── framework/
-│   └── logs/
-├── tests/                 # Pest test files
-│   ├── Feature/
-│   └── Unit/
-├── .env.example           # Example environment file
-├── artisan                # Artisan CLI
-├── composer.json          # PHP dependencies
-├── package.json           # Node dependencies
-├── vite.config.js         # Vite configuration
-└── resources/css/app.css  # Tailwind CSS v4 configuration (@theme)
+├── app/                    # Application logic and Blade component classes
+├── bootstrap/              # Laravel bootstrap configuration
+├── config/                # Framework configuration
+├── database/              # SQLite file, migrations, seeders, and factories
+├── public/                # Public entry point and compiled assets
+├── resources/             # Blade views, CSS, and JavaScript
+├── routes/                # Web and console routes
+├── storage/               # Logs, cache, sessions, and uploads
+├── tests/                 # Pest tests
+├── .env.example           # Local environment template
+├── artisan                # Laravel command-line entry point
+├── composer.json          # PHP dependencies and scripts
+├── package.json           # Node.js dependencies and scripts
+└── vite.config.js         # Vite configuration
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
-### Common Issues
+### PHP or Composer platform errors
 
-#### "Class not found" errors
+Check the installed versions and Composer requirements:
+
 ```bash
-composer dump-autoload
+php -v
+composer check-platform-reqs
 ```
 
-#### Permission errors on storage/bootstrap/cache
+This project currently expects PHP 8.3+.
+
+### Node engine warning
+
+The project declares Node.js 22.x. Node.js 24 may work, but use Node.js 22 to avoid `EBADENGINE` warnings and keep the environment reproducible.
+
+### Missing Vite manifest
+
+Run:
+
 ```bash
-chmod -R 775 storage bootstrap/cache
+npm run build
 ```
 
-#### NPM build errors
+### SQLite errors
+
+Confirm that the SQLite extension is enabled and the database file exists:
+
+```bash
+php -m | grep -Ei 'pdo_sqlite|sqlite3'
+ls -l database/database.sqlite
+```
+
+Then clear cached configuration:
+
+```bash
+php artisan optimize:clear
+```
+
+### NPM build errors
+
+Reinstall the frontend dependencies:
+
 ```bash
 rm -rf node_modules package-lock.json
 npm install
+npm run build
 ```
-
-#### Clear all caches
-```bash
-php artisan optimize:clear
-```
-
-#### SQLite/database errors
-- Confirm `database/database.sqlite` exists
-- Confirm `DB_CONNECTION=sqlite` in `.env`
-- Run `php artisan optimize:clear`
-
-## 🔄 Update Log
-
-### [1.1.2] - 2026-09-02
-
-- **Dependency updates**: FullCalendar upgraded to v7 and ApexCharts / Swiper bumped to latest versions.
-- **RTL layout support**: Added right-to-left (RTL) direction support with automatic layout flipping and toggle.
-- **Language / RTL switcher**: Added switcher in user dropdown with persistent direction state in `localStorage`.
-- **Keyboard & dropdown improvements**: Enhanced dropdown behavior and click-outside handling.
-- **Tailwind CSS v4 optimizations**: Applied CSS logical properties across sidebar, tables, header, and components.
-
-
-### [2026-05-23]
-
-- Added **AI Settings** page to configure models, keys, and token limits.
-- Added **Maps** page with MapLibre GL, Leaflet, and iframe styles.
-- Added **Vector Maps** page powered by AmCharts 5 geodata (World & USA).
-- Added **Radar Charts** page with 3 unique formats.
-- Added **Radial Progress Charts** page featuring 4 custom layout templates.
-- Introduced new **Bar Charts Five & Six** and **Pie Charts Four & Five**.
-
-### [April 28, 2026]
-- Added **AI Dashboard** with token usage and revenue tracking.
-- Added **Sales Dashboard** with retention and multi-channel analytics.
-- Added **Finance Dashboard** with cashflow and balance management.
-- Introduced **6 New Layout variations** for improved UI flexibility.
-- Integrated **Advanced Data Visualization** with 7+ new chart types.
-
-### [2026-03-15]
-- Fixed PHP 8.5 deprecation warning
-
-### [2025-12-29]
-- Added Date Picker in Statistics Chart
 
 ## License
 
-Refer to our [LICENSE](https://tailadmin.com/license) page for more information.
+Refer to the [LICENSE](https://tailadmin.com/license) page for more information.
