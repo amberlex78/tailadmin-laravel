@@ -21,7 +21,7 @@ resources/
 └── views/
     ├── components/           # Reusable Blade components (<x-ui.*>, <x-form.*>, <x-common.*>, etc.)
     │   ├── common/           # Shared page elements (page-breadcrumb, component-card, table-dropdown)
-    │   ├── ecommerce/        # Ecommerce dashboard widgets (metrics, monthly-target, recent-orders)
+    │   ├── ecommerce/        # Ecommerce dashboard widgets (metrics, monthly-sale, recent-orders)
     │   ├── form/             # Form controls (input, select, date-picker, dropzone)
     │   ├── header/           # Header widgets (user-dropdown, notification-dropdown)
     │   ├── profile/          # User profile cards (personal-info, profile-card, address-card)

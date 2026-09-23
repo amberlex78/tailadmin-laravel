@@ -7,14 +7,6 @@
       <x-ecommerce.monthly-sale />
     </div>
     <div class="col-span-12 xl:col-span-5">
-        <x-ecommerce.monthly-target />
-    </div>
-
-    <div class="col-span-12">
-      <x-ecommerce.statistics-chart />
-    </div>
-
-    <div class="col-span-12 xl:col-span-5">
       <x-ecommerce.customer-demographic />
     </div>
 

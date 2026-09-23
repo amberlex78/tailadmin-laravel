@@ -389,31 +389,6 @@
 .apexcharts-gridline {
   @apply !stroke-gray-100 dark:!stroke-gray-800;
 }
-#chartTwo .apexcharts-datalabels-group {
-  @apply !-translate-y-24;
-}
-
-#chartSeven .apexcharts-datalabels-group .apexcharts-text,
-#chartTwo .apexcharts-datalabels-group .apexcharts-text,
-#chartThirteen .apexcharts-datalabels-group .apexcharts-text,
-#chartTwelve .apexcharts-datalabels-group .apexcharts-text {
-  @apply !fill-gray-800 !font-semibold dark:!fill-white/90;
-}
-
-#chartSixteen .apexcharts-legend {
-  @apply !p-0 !pl-6;
-}
-
-.jvm-container {
-  @apply !bg-gray-50 dark:!bg-gray-900;
-}
-.jvm-region.jvm-element {
-  @apply !fill-gray-300 hover:!fill-brand-500 dark:!fill-gray-700 dark:hover:!fill-brand-500;
-}
-.jvm-marker.jvm-element {
-  @apply !stroke-gray-200 dark:!stroke-gray-800;
-}
-
 .stocks-slider-outer .swiper-button-next:after,
 .stocks-slider-outer .swiper-button-prev:after {
   @apply hidden;

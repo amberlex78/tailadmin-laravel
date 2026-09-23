@@ -131,15 +131,6 @@ class SidebarController extends Controller
                 'title' => 'Others',
                 'items' => [
                     [
-                        'icon' => 'pie-chart-icon',
-                        'name' => 'Charts',
-                        'subItems' => [
-                            ['name' => 'Line Chart', 'path' => '/line-chart', 'pro' => false],
-                            ['name' => 'Bar Chart', 'path' => '/bar-chart', 'pro' => false],
-                            ['name' => 'Pie Chart', 'path' => '/pie-chart', 'pro' => false],
-                        ],
-                    ],
-                    [
                         'icon' => 'box-cube-icon',
                         'name' => 'UI Elements',
                         'subItems' => [
