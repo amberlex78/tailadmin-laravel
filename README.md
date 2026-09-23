@@ -23,7 +23,7 @@
 
 - PHP 8.3 or newer
 - Composer
-- Node.js 22.x and npm
+- Node.js 24.x and npm
 - PHP extensions required by Laravel, including `pdo_sqlite`
 
 This repository is configured for local development without Docker, Laravel Sail, MySQL, Redis, or a mail server. SQLite is used as the local database, while sessions and cache use the filesystem and queues run synchronously.
@@ -44,7 +44,7 @@ composer install
 npm install
 ```
 
-Use Node.js 22.x for the version declared by the project:
+Use Node.js 24.x for the version declared by the project:
 
 ```bash
 node -v
@@ -188,7 +188,7 @@ This project currently expects PHP 8.3+.
 
 ### Node engine warning
 
-The project declares Node.js 22.x. Node.js 24 may work, but use Node.js 22 to avoid `EBADENGINE` warnings and keep the environment reproducible.
+The project declares Node.js 24.x to keep the local and deployment environments reproducible.
 
 ### Missing Vite manifest
 
