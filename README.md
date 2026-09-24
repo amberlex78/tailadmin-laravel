@@ -223,6 +223,10 @@ npm install
 npm run build
 ```
 
+## Credits
+
+This project is based on the [TailAdmin Laravel dashboard template](https://github.com/TailAdmin/tailadmin-laravel). The original template was adapted and simplified for this project.
+
 ## License
 
 This project is open-sourced under the [MIT license](LICENSE).
