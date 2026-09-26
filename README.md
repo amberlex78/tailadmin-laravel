@@ -2,6 +2,8 @@
 
 TailAdmin Laravel is a responsive admin dashboard built with Laravel, Blade, Tailwind CSS, Alpine.js, and Vite. It includes dashboard pages, reusable Blade components, forms, tables, profile pages, authentication screens, and UI examples.
 
+![Dashboard screenshot](docs/screenshots/dashboard.png)
+
 ## About this version
 
 This repository is a personal, simplified adaptation of the [official TailAdmin Laravel template](https://github.com/TailAdmin/tailadmin-laravel). The original project includes a Docker and Laravel Sail setup for running the application in containers. This version is intended for fast local development without Docker, Sail, or container services.
